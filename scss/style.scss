@@ -1,0 +1,795 @@
+$cyan      : #00a2e6;
+$black     : #333333;
+$white     : #ffffff;
+$yellow    : #f1bb00;
+$grey      : #808080;
+$light-grey: #cccccc;
+
+@mixin font( $style, $size, $color ) {
+  @if $style == bold {
+    font-family: "NotoSansCJKjp Bold", sans-serif;
+  }
+  @else if $style == medium {
+    font-family: "NotoSansCJKjp Medium", sans-serif;
+  }
+  @else if $style == regular {
+    font-family: "NotoSansCJKjp Regular", sans-serif;
+  }
+  @else {
+    font-family: "NotoSansCJKjp Light", sans-serif;
+  }
+
+  font-size: $size + px;
+  color: $color;
+}
+
+@mixin size($width, $height) {
+  width : $width + px;
+  height: $height + px;
+}
+
+@mixin greater-than($color) {
+  @include size(9, 9);
+  content     : '';
+  display     : inline-block;
+  border-top  : 1px solid $color;
+  border-right: 1px solid $color;
+  transform   : rotate(45deg);
+}
+
+@mixin number-sign(){
+  content: '\0023';
+}
+
+@mixin icon-hover() {
+  .icon_speaker {
+    path {
+      stroke: $cyan;
+    }
+
+    polygon {
+      fill: $cyan;
+      stroke: $cyan;
+    }
+  }
+
+  .icon_people {
+    path {
+      stroke: $cyan; 
+    }
+  }
+
+  .icon_light {
+    path {
+      fill: $cyan;
+    }
+  }
+
+  .icon_flower {
+    path {
+      fill: $cyan;
+    }
+  }
+
+  .icon_book {
+    path {
+      fill: $cyan;
+      stroke: $cyan;
+    }
+
+    rect {
+      fill: $cyan;
+    }
+  }
+}
+
+.container {
+  max-width: 1078px;
+  margin: 0 auto;
+}
+
+// ************************************* Start icon *************************************
+
+.icon_speaker {
+  @include size(31, 26);
+}
+
+.icon_people {
+  @include size(25, 20);
+}
+
+.icon_book {
+  @include size(25, 21);
+}
+
+.icon_flower {
+  @include size(17, 23);
+}
+
+.icon_light {
+  @include size(15, 25);
+}
+
+.icon_heart {
+  @include size(19, 17);
+
+  path {
+    fill: $yellow;
+	}
+}
+
+.icon_comment {
+  @include size(17, 17);
+
+  path {
+    fill: $cyan;
+  }
+}
+
+// ************************************* End icon *************************************
+
+// ************************************* Start header *************************************
+
+.head {
+  display        : flex;
+  justify-content: space-between;
+  align-items    : center;
+}
+
+.head__comment-button {
+  @include font(light, 14, $white);
+  background-color: $yellow;
+  padding: 8px 12px 9px 15px;
+  text-decoration: none;
+
+  &::after {
+    @include greater-than($white);
+    margin-left: 15px;
+  }
+}
+
+.head__search {
+  width: 245px;
+  border-radius: 4px;
+  padding-left: 11px;
+  border: 1px solid #999999;
+
+  &:placeholder {
+    @include font(light, 14, $grey);
+  }
+}
+
+// ************************************* End header *************************************
+
+// ************************************* Start menu *************************************
+
+.menu__list {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  padding-left: 0;
+}
+
+.menu__item {
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    .menu__link {
+      color: $cyan;
+    }
+
+    @include icon-hover();
+  }
+}
+
+.menu__link {
+  @include font(bold, 16, $black);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu__icon {
+  margin-right: 10px;
+}
+
+.menu__active {
+  
+  .menu__link {
+    color: $cyan;
+  }
+
+  @include icon-hover();
+}
+
+// ************************************* End menu *************************************
+
+// ************************************* Start slider *************************************
+
+.slider {
+  width: 800px;
+  position: relative;
+}
+
+.slider__image {
+  width: 100%;
+  margin: 0;
+  height: 350px;
+}
+
+.slider__image-src {
+  max-width: 100%;
+  height: 350px;
+}
+
+.slider__info {
+  background-color: rgba(0,0,0,.5);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.slider__title {
+  @include font(bold, 20, $white);
+  display: flex;
+  align-items: center;
+}
+
+.slider__title-type {
+  @include font(bold, 16, $white);
+  border      : 1px solid $white;
+  padding     : 7px 15px 5px 13px;
+  margin-right: 10px;
+}
+
+.slider__text {
+  @include font(light, 15, $white);
+  line-height  : 1.6;
+  margin-bottom: 34px;
+}
+
+.slider__wrapper {
+  padding: 20px 0;
+  border-bottom: 1px solid $cyan;
+}
+
+.slider__pagination {
+  position       : absolute;
+  bottom         : 20px;
+  z-index        : 3;
+  width          : 100%;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+}
+// ************************************* End slider *************************************
+
+// ************************************* Start Swiperslider *************************************
+
+.swiper-container-horizontal {
+  .slider__pagination {
+    .swiper-pagination-bullets {
+      .swiper-pagination-bullet:not(:last-child) {
+        margin-left: 0;
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+.swiper-pagination {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+  position       : static;
+  text-align     : initial;
+  margin         : 0 37px;
+}
+
+.swiper-pagination-bullet {
+  background-color: $white;
+  opacity: 1;
+  @include size(4, 4);
+}
+
+.swiper-pagination-bullet-active {
+  background-color: $cyan;
+  @include size(8, 8);
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+  position: relative;
+
+  &::before {
+    position        : absolute;
+    content         : '';
+    top             : 0;
+    left            : 0;
+    bottom          : 0;
+    right           : 0;
+    background-color: rgba(255, 255, 255, .5);
+    z-index         : 2;
+  }
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  @include size(8, 15);
+  color     : $white;
+  top       : auto;
+  position  : static;
+  display   : initial;
+  margin-top: 0;
+
+  &:hover {
+    color: $cyan;
+  }
+
+  &::after {
+    font-size: 14px;
+  }
+}
+
+.swiper-button-prev {
+  left: auto;
+}
+
+.swiper-button-next {
+  right: auto;
+}
+
+// ************************************* End Swiperslider *************************************
+
+.main {
+  border-top: 1px solid $cyan;
+}
+
+.main__column {
+  display: flex;
+  justify-content: space-between;
+}
+
+// ************************************* Start news *************************************
+
+.news {
+  width        : 797px;
+  display      : flex;
+  flex-wrap    : wrap;
+  border-right : 1px solid $cyan;
+  padding-left : 0;
+  padding-top  : 38px;
+  padding-right: 30px;
+  box-sizing   : border-box;
+  list-style   : none;
+  margin-top   : 0;
+  margin-bottom: 0;
+}
+
+.news__content {
+  margin-bottom: 45px;
+  width        : 235px;
+  position     : relative;
+
+  &:nth-child(3n + 2) {
+    margin-left: 31px;
+    margin-right: 30px;
+  }
+}
+
+.news__hot {
+  &::before {
+    content : '';
+    position: absolute;
+    width   : calc( 100% + 13px );
+    height  : calc( 100% + 17px );
+    border  : 1px solid $yellow;
+    top     : -8px;
+    left    : -6px;
+    z-index : -1;
+  }
+
+  &::after {
+    position        : absolute;
+    content         : 'new!';
+    color           : $yellow;
+    background-color: $white;
+    font-size       : 14px;
+    font-family     : "Arial";
+    font-weight     : bold;
+    text-transform  : uppercase;
+    top             : -16px;
+    right           : 0;
+    padding         : 0 5px;
+  }
+}
+
+.news__icon {
+  position: absolute;
+  top: 0;
+  left: -4px;
+}
+
+.news__image {
+  margin: 0;
+  width: 235px;
+
+  &::before {
+    content     : '';
+    position    : absolute;
+    border-style: solid;
+    border-width: 50px 50px 0 0;
+    border-color: $white transparent transparent transparent;
+  }
+}
+
+.news__image-src {
+  max-width: 100%;
+  height: 170px;
+}
+
+.news__title {
+  @include font(medium, 18, $black);
+  line-height: 1.6;
+  margin-top: 19px;
+  margin-bottom: 21px;
+}
+
+.news__title-link {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.news__info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.news__time,
+.news__like,
+.news__comment {
+  @include font(light, 14, $black);
+}
+
+.news__hashtag {
+  margin-top: 21px;
+}
+
+.news__hashtag-content {
+  @include font(light, 12.98, $cyan);
+  margin-right: 14px;
+  text-decoration: none;
+
+  &::before {
+    @include number-sign();
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.news__button {
+  width         : 100%;
+  position      : relative;
+  border        : 1px solid $black;
+  padding-top   : 15px;
+  padding-bottom: 14px;
+  border-radius : 4px;
+  margin-bottom : 40px;
+}
+
+.news__more {
+  @include font(medium, 16, $black);
+  background-color: $white;
+  display         : block;
+  text-align      : center;
+  text-decoration : none;
+}
+
+.news__plus-sign {
+  position : absolute;
+  top      : 50%;
+  transform: translate(-50%, -50%);
+  right    : 31px;
+
+  &::before,
+  &::after {
+    content         : '';
+    position        : absolute;
+    width           : 12px;
+    height          : 2px;
+    background-color: $black;
+  }
+
+  &::after {
+    transform: rotate(90deg);
+  }
+}
+
+.news__interact {
+  display: flex;
+  align-items: center;
+}
+
+.news__like {
+  margin-right: 20px;
+}
+
+.news__like,
+.news__comment {
+  display: flex;
+  align-items: center;
+}
+
+.news__like-number,
+.news__comment-number {
+  margin-left: 10px;
+}
+
+// ************************************* End news *************************************
+
+.sidebar {
+  width: 280px;
+  padding-left: 30px;
+  box-sizing: border-box;
+}
+
+// ************************************* Start note in sidebar *************************************
+
+.note {
+  border-bottom: 1px solid $cyan;
+}
+
+.note__title {
+  @include font(bold, 16, $cyan);
+  margin-top: 38px;
+}
+
+.note__content {
+  display        : flex;
+  justify-content: space-between;
+  margin-bottom  : 31px;
+}
+
+.note__image {
+  margin: 0;
+  width: 100px;
+}
+
+.note__image-src {
+  max-width: 100%;
+  height: 160px;
+}
+
+.note__text {
+  @include font(medium, 15,  $black);
+  line-height: 2;
+  margin     : 0;
+  margin-left: 21px;
+  width      : calc(100% - 100px);
+}
+
+.note__link {
+  text-decoration: none;
+  color: $black;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// ************************************* End note in sidebar *************************************
+
+// ************************************* Start release in sidebar *************************************
+
+.release {
+  border-bottom: 1px solid $cyan;
+}
+
+.release__list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.release__title {
+  @include font(bold, 16, $cyan);
+  margin-top: 32px;
+
+  &::after {
+    @include greater-than($cyan);
+    margin-left: 21px;
+  }
+}
+
+.release__items {
+  margin-bottom: 30px;
+  display: table;
+
+  &::before {
+    content      : "\2022";
+    color        : $cyan;
+    padding-right: 11px;
+    display      : table-cell;
+    @include size(6, 6);
+  }
+}
+
+.release__link {
+  @include font(light, 14, $black);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// ************************************* End release in sidebar *************************************
+
+// ************************************* Start video in sidebar *************************************
+
+.video {
+  border-bottom: 1px solid $cyan;
+}
+
+.video__heading {
+  @include font(bold, 16, $cyan);
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  &::after {
+    @include greater-than($cyan);
+    margin-left: 23px;
+  }
+}
+
+.video__title {
+  position: relative;
+  margin-bottom: 30px;
+
+  &::after {
+    @include greater-than($cyan);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    right: 4px;
+  }
+}
+
+.video__title-link {
+  @include font(medium, 14, $black);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.video__image {
+  width: 250px;
+  margin: 0;
+  position: relative;
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    border-style: solid;
+    border-width: 10px 0 10px 17px;
+    border-color: transparent transparent transparent $white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    @include size(50, 50);
+    border-radius: 50%;
+    border: 1px solid $white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.video__image-src {
+  max-width: 100%;
+  height: 132px;
+}
+
+// ************************************* End video in sidebar *************************************
+
+// ************************************* Start tags in sidebar *************************************
+
+.tags {
+  border-bottom: 1px solid $cyan;
+}
+
+.tags__title {
+  @include font(bold, 16, $cyan);
+  margin-top: 30px;
+}
+
+.tags__list {
+  list-style-type: none;
+  padding-left   : 0;
+  display        : flex;
+  flex-wrap      : wrap;
+  margin-bottom  : 0;
+}
+
+.tags__items {
+  margin-bottom: 20px;
+}
+
+.tags__items:not(:last-child) {
+  margin-right: 14px;
+}
+
+.tags__link {
+  @include font(light, 12.98, $cyan);
+  text-decoration: none;
+
+  &::before {
+    @include number-sign();
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// ************************************* End tags in sidebar *************************************
+
+// ************************************* Start brand in sidebar *************************************
+
+.brands__list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0;
+}
+
+.brands__items {
+  border: 1px solid $light-grey;
+
+  &:first-child {
+    margin-top: 30px;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.brands__content {
+  display: flex;
+  height: 58px;
+  justify-content: center;
+  align-items: center;
+}
+
+// ************************************* End brand in sidebar *************************************
+
+// ************************************* Start footer *************************************
+
+.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-top: 1px solid $cyan;
+}
+
+.footer__text {
+  @include font(regular, 12, black);
+  text-align: center;
+}
+
+// ************************************* End footer *************************************
