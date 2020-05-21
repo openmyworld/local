@@ -83,8 +83,12 @@ $light-grey: #cccccc;
   }
 }
 
+body {
+  min-width: 1078px;
+}
+
 .container {
-  max-width: 1078px;
+  width: 1078px;
   margin: 0 auto;
 }
 
