@@ -1,0 +1,79 @@
+@use 'color' as *;
+
+@mixin font( $style, $size, $color ) {
+  @if $style == bold {
+    font-family: "NotoSansCJKjp Bold", sans-serif;
+  }
+  @else if $style == medium {
+    font-family: "NotoSansCJKjp Medium", sans-serif;
+  }
+  @else if $style == regular {
+    font-family: "NotoSansCJKjp Regular", sans-serif;
+  }
+  @else {
+    font-family: "NotoSansCJKjp Light", sans-serif;
+  }
+
+  font-size: $size + px;
+  color: $color;
+}
+
+@mixin size($width, $height) {
+  width : $width + px;
+  height: $height + px;
+}
+
+@mixin greater-than($color) {
+  @include size(9, 9);
+  content     : '';
+  display     : inline-block;
+  border-top  : 1px solid $color;
+  border-right: 1px solid $color;
+  transform   : rotate(45deg);
+}
+
+@mixin number-sign() {
+  content: '\0023';
+}
+
+@mixin icon-hover() {
+  .icon_speaker {
+    path {
+      stroke: $cyan;
+    }
+
+    polygon {
+      fill: $cyan;
+      stroke: $cyan;
+    }
+  }
+
+  .icon_people {
+    path {
+      stroke: $cyan; 
+    }
+  }
+
+  .icon_light {
+    path {
+      fill: $cyan;
+    }
+  }
+
+  .icon_flower {
+    path {
+      fill: $cyan;
+    }
+  }
+
+  .icon_book {
+    path {
+      fill: $cyan;
+      stroke: $cyan;
+    }
+
+    rect {
+      fill: $cyan;
+    }
+  }
+}
